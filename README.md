@@ -1,4 +1,5 @@
-#behave -> behaviour-driven development (BDD) with Python
+# behave
+behaviour-driven development (BDD) with Python
 
 [Docs](https://behave.readthedocs.io/en/latest/index.html#)
 
