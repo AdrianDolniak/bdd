@@ -1,33 +1,43 @@
+# -*- coding: utf-8 -*-
 from behave import *
+from hamcrest import *
 
 # Givens
-
-@given(u'the user is logged on the e-mail account')
+@given(u'the user is on the home page of the portal wp.pl')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Given the user is logged on the e-mail account')
+    context.driver.get('https://www.wp.pl/')
 
-@given(u'the logging page is displayed')
+
+@given(u'the logging page to the e-mail account is displayed')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Given the logging page is displayed')
+    context.driver.get('https://profil.wp.pl/login.html?zaloguj=poczta')
 
 
 # Whens
-
-@when(u'the user looks for a word "Odebrane" on the page')
+@when(u'the user login to the e-mail account')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When the user looks for a word "Odebrane" on the page')
+    context.driver.get('https://profil.wp.pl/login.html?zaloguj=poczta')
+    context.driver.find_element_by_xpath('//*[@id="login"]').send_keys('testerwsb_t1')
+    context.driver.find_element_by_xpath('//*[@id="password"]').send_keys('adam1234')
+    context.driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
+
 
 @when(u'the user enter valid username and wrong password')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When the user enter valid username and wrong password')
+    context.driver.find_element_by_xpath('//*[@id="login"]').send_keys('testerwsb_t1')
+    context.driver.find_element_by_xpath('//*[@id="password"]').send_keys('adam1235')
+    context.driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
 
 
 # Thens
-
-@then(u'the user sees a word "Odebrane on the page')
+@then(u'the user will see a word "Odebrane on the page')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then the user sees a word "Odebrane on the page')
+    odebrane = context.driver.find_element_by_xpath('//*[@id="folder-1"]/div[2]')
+    assert_that(odebrane, 'Odebrane')
+
 
 @then(u'the warning is shown "Wrong username or password"')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then the warning is shown "Wrong username or password"')
+    title = context.driver.find_element_by_xpath('//*[@id="login-error-message"]/h1')
+    assert_that(title.text, contains_string(u'Niestety podany login lub hasło jest błędne.'))
+

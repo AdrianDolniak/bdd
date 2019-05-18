@@ -2,7 +2,7 @@ Feature: Testing remote hosts with Ssh library
 
   Scenario: Check if we are connected with remote host
      Given the connection is set with remote host
-      When we check if there is a connection
+      When we check if there is a connection with remote host
       Then the response contain phrase "adi-vmware"
 
 
@@ -14,5 +14,5 @@ Feature: Testing remote hosts with Ssh library
 
   Scenario: Check if we are connected to Internet on host
      Given the connection is set with remote host
-      When we execute command "ping -c1 8.8.8.8"
+      When we check if remote machine has internet connection
       Then the response contain phrase "1 received"
