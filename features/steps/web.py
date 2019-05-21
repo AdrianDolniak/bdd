@@ -30,7 +30,7 @@ def step_impl(context):
 
 
 # Thens
-@then(u'the user will see a word "Odebrane on the page')
+@then(u'the user will see a word "Odebrane on the page"')
 def step_impl(context):
     odebrane = context.driver.find_element_by_xpath('//*[@id="folder-1"]/div[2]')
     assert_that(odebrane, 'Odebrane')

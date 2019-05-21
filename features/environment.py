@@ -1,10 +1,11 @@
 from selenium import webdriver
 
 
-def before_scenario(context, scenario):
+def before_tag(context, web):
     context.driver = webdriver.Firefox()
     context.driver.implicitly_wait(10)
+    context.driver.maximize_window()
 
 
-def after_scenario(context, scenario):
+def after_tag(context, web):
     context.driver.quit()
