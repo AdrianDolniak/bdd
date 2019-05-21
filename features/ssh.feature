@@ -1,3 +1,4 @@
+@ssh
 Feature: Testing remote hosts with Ssh library
 
   Scenario: Connection with remote host

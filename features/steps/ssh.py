@@ -1,5 +1,4 @@
 from behave import *
-import paramiko
 from hamcrest import *
 
 # givens
@@ -10,31 +9,19 @@ def step_impl(context):
 # whens
 @when(u'we check the connection with remote host')
 def step_impl(context):
-    ssh = paramiko.SSHClient()
-    ssh.load_system_host_keys()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect("localhost", port=22, username="adi", password="adi!", allow_agent=False, look_for_keys=False)
-    stdin, stdout, stderr = ssh.exec_command("uname -a")
+    stdin, stdout, stderr = context.ssh.exec_command("uname -a")
     context.output = stdout.read()
 
 
 @when(u'we check if the remote machine has 4 cores processor')
 def step_impl(context):
-    ssh = paramiko.SSHClient()
-    ssh.load_system_host_keys()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect("localhost", port=22, username="adi", password="adi!", allow_agent=False, look_for_keys=False)
-    stdin, stdout, stderr = ssh.exec_command("nproc")
+    stdin, stdout, stderr = context.ssh.exec_command("nproc")
     context.output = stdout.read()
 
 
 @when(u'we check if the remote machine has internet connection')
 def step_impl(context):
-    ssh = paramiko.SSHClient()
-    ssh.load_system_host_keys()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect("localhost", port=22, username="adi", password="adi!", allow_agent=False, look_for_keys=False)
-    stdin, stdout, stderr = ssh.exec_command("ping -c1 8.8.8.8")
+    stdin, stdout, stderr = context.ssh.exec_command("ping -c1 8.8.8.8")
     context.output = stdout.read()
 
 # thens
