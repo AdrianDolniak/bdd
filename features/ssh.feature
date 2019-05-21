@@ -8,7 +8,7 @@ Feature: Testing remote hosts with Ssh library
 
   Scenario: Remote machine with 4 cores processor
      Given we open the terminal
-      When we check if the remote machine processor has 4 cores
+      When we check if the remote machine has 4 cores processor
       Then the response should be "4"
 
 

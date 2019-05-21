@@ -17,7 +17,8 @@ def step_impl(context):
     stdin, stdout, stderr = ssh.exec_command("uname -a")
     context.output = stdout.read()
 
-@when(u'we check if the remote machine processor has 4 cores')
+
+@when(u'we check if the remote machine has 4 cores processor')
 def step_impl(context):
     ssh = paramiko.SSHClient()
     ssh.load_system_host_keys()
