@@ -1,8 +1,8 @@
-from behave import *
-from hamcrest import *
+from behave import given, when, then
+from hamcrest import assert_that, contains_string
 
 # givens
-@given(u'we open the terminal')
+@given(u'the ssh connection is set')
 def step_impl(context):
     pass
 
